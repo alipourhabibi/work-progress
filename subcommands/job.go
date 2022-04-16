@@ -42,7 +42,7 @@ func jobSubCommand() []*cli.Command {
 			Name:    "delete",
 			Aliases: []string{"d"},
 			Usage:   "delete a job based on given name",
-			Action:  nil,
+			Action:  actions.DeleteJob,
 			Flags:   flags.JobDeleteFlags(),
 		},
 		{

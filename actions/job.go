@@ -20,7 +20,7 @@ func AddJob(c *cli.Context) error {
 	if len(description) <= 0 {
 		description = []string{""}
 	}
-	job := repository.NewJob(name[0], description[0], amountFloat)
+	job := repository.NewJob(name[0], description[0], amountFloat, "")
 	job.Add()
 	return nil
 }
@@ -47,7 +47,17 @@ func ModifyJob(c *cli.Context) error {
 	if len(newName) == 0 {
 		newName = []string{""}
 	}
-	job := repository.NewJob(name[0], description[0], amountFloat)
+	job := repository.NewJob(name[0], description[0], amountFloat, "")
 	job.Modify(newName[0])
+	return nil
+}
+
+func DeleteJob(c *cli.Context) error {
+	name := c.StringSlice("n")
+	time := c.StringSlice("t")
+
+	job := repository.NewJob(name[0], "", 0, time[0])
+	job.Delete()
+
 	return nil
 }

@@ -15,7 +15,7 @@ type job struct {
 	Time        string  `json:"time"`
 }
 
-func NewJob(name string, description string, amount float64) *job {
+func NewJob(name string, description string, amount float64, time string) *job {
 	return &job{
 		Name:        name,
 		Description: description,
@@ -77,6 +77,28 @@ func (j *job) Modify(newName string) {
 		}
 	}
 	data, err = json.Marshal(jobs)
+	if err != nil {
+		panic(err)
+	}
+	os.WriteFile(files.WORK, data, 0644)
+}
+
+func (j *job) Delete() {
+	jobs := []job{}
+	data, err := os.ReadFile(files.WORK)
+	if err != nil {
+		panic(err)
+	}
+	json.Unmarshal(data, &jobs)
+
+	newJobs := []job{}
+
+	for _, v := range jobs {
+		if v.Name != j.Name && v.Time != j.Time {
+			newJobs = append(newJobs, v)
+		}
+	}
+	data, err = json.Marshal(newJobs)
 	if err != nil {
 		panic(err)
 	}

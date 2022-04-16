@@ -69,6 +69,12 @@ func JobDeleteFlags() []cli.Flag {
 			Usage:    "name of job",
 			Required: true,
 		},
+		&cli.StringSliceFlag{
+			Name:     "time",
+			Aliases:  []string{"t"},
+			Usage:    "time of job",
+			Required: true,
+		},
 	}
 	return deleteFlags
 }
