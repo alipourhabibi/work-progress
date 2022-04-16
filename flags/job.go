@@ -85,7 +85,13 @@ func JobGetFlags() []cli.Flag {
 			Name:     "name",
 			Aliases:  []string{"n"},
 			Usage:    "name of job",
-			Required: true,
+			Required: false,
+		},
+		&cli.StringSliceFlag{
+			Name:     "time",
+			Aliases:  []string{"t"},
+			Usage:    "time of job based on regex",
+			Required: false,
 		},
 	}
 	return getFlags

@@ -49,7 +49,7 @@ func jobSubCommand() []*cli.Command {
 			Name:    "get",
 			Aliases: []string{"g"},
 			Usage:   "get a job based on given name",
-			Action:  nil,
+			Action:  actions.GetJob,
 			Flags:   flags.JobGetFlags(),
 		},
 	}
