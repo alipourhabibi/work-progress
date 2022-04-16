@@ -35,7 +35,7 @@ func jobSubCommand() []*cli.Command {
 			Name:    "modify",
 			Aliases: []string{"m"},
 			Usage:   "modify a job based on given name",
-			Action:  nil,
+			Action:  actions.ModifyJob,
 			Flags:   flags.JobModifyFlags(),
 		},
 		{

@@ -19,8 +19,8 @@ func JobAddFlags() []cli.Flag {
 			Required: false,
 		},
 		&cli.StringSliceFlag{
-			Name:     "time",
-			Aliases:  []string{"t"},
+			Name:     "amount",
+			Aliases:  []string{"a"},
 			Usage:    "amound you did the job",
 			Required: true,
 		},
@@ -45,15 +45,15 @@ func JobModifyFlags() []cli.Flag {
 		},
 		&cli.StringSliceFlag{
 			Name:     "new-description",
-			Aliases:  []string{"nd"},
+			Aliases:  []string{"d"},
 			Usage:    "new description",
 			Required: false,
 		},
 		&cli.StringSliceFlag{
 			Name:     "new-time",
-			Aliases:  []string{"nt"},
+			Aliases:  []string{"a"},
 			Usage:    "new amound you did the job",
-			Required: true,
+			Required: false,
 		},
 	}
 
