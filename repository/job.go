@@ -8,13 +8,14 @@ import (
 	"time"
 
 	"github.com/alexeyco/simpletable"
+	"github.com/alipourhabibi/work-progress/chart"
 	"github.com/alipourhabibi/work-progress/files"
 )
 
 type job struct {
 	Name        string  `json:"name"`
 	Description string  `json:"description"`
-	Amont       float64 `json:"amound"`
+	Amont       float64 `json:"amount"`
 	Time        string  `json:"time"`
 }
 
@@ -174,5 +175,53 @@ func (j *job) Get() {
 	}
 	table.SetStyle(simpletable.StyleCompactLite)
 	fmt.Println(table.String())
+}
+func (j *job) Draw(chartName string, port int) {
+	jobs := []job{}
+	data, err := os.ReadFile(files.WORK)
+	if err != nil {
+		panic(err)
+	}
+	json.Unmarshal(data, &jobs)
+
+	showJobs := []job{}
+
+	if j.Name != "" && j.Time != "" {
+		for _, v := range jobs {
+			match, err := regexp.MatchString(j.Time, v.Time)
+			if err != nil {
+				panic(err)
+			}
+			if v.Name == j.Name && match {
+				showJobs = append(showJobs, v)
+			}
+		}
+	} else if j.Name == "" && j.Time != "" {
+		for _, v := range jobs {
+			match, err := regexp.MatchString(j.Time, v.Time)
+			if err != nil {
+				panic(err)
+			}
+			if match {
+				showJobs = append(showJobs, v)
+			}
+		}
+	} else if j.Name != "" && j.Time == "" {
+		for _, v := range jobs {
+			if v.Name == j.Name {
+				showJobs = append(showJobs, v)
+			}
+		}
+
+	}
+
+	inInterface := []map[string]interface{}{}
+	inRec, err := json.Marshal(showJobs)
+	json.Unmarshal(inRec, &inInterface)
+
+	switch chartName {
+	case "bar":
+		chart.BarChart(inInterface, port)
+	}
 
 }

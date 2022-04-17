@@ -18,7 +18,9 @@ func NewJobApp(app *cli.App) *jobApp {
 
 func (w *jobApp) InitSubCommands() {
 	job := jobSubCommand()
-	w.app.Commands = job
+	chart := chartCommands()
+	w.app.Commands = append(w.app.Commands, job...)
+	w.app.Commands = append(w.app.Commands, chart...)
 }
 
 func jobSubCommand() []*cli.Command {
@@ -63,6 +65,20 @@ func jobSubCommand() []*cli.Command {
 	}
 
 	return job
+}
+
+func chartCommands() []*cli.Command {
+
+	chart := []*cli.Command{
+		{
+			Name:    "draw",
+			Aliases: []string{"d"},
+			Usage:   "draw charts",
+			Action:  actions.DrawJob,
+			Flags:   flags.JobDraw(),
+		},
+	}
+	return chart
 }
 
 func (w *jobApp) Run() {
