@@ -16,7 +16,7 @@ $ wp job get -n name -t time(regex)
 $ wp chart draw -name name -time time(regext) -c bar
 ```
 ## screenshots
-![getting datas](https://github.com/alipourhabibi/work-progress-blog/blob/master/images/datas.jpg?raw=true)
+![getting datas](https://github.com/alipourhabibi/work-progress/blob/master/images/datas.jpg?raw=true)
 ![bar chart](https://github.com/alipourhabibi/work-progress/blob/master/images/barchart.jpg?raw=true)
 
 ## attention
