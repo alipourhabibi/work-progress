@@ -16,8 +16,8 @@ $ wp job get -n name -t time(regex)
 $ wp chart draw -name name -time time(regext) -c bar
 ```
 ## screenshots
-![getting datas](https://github.com/alipourhabibi/simple-blog/blob/master/images/datas.jpg?raw=true)
-![bar chart](https://github.com/alipourhabibi/simple-blog/blob/master/images/barchart.jpg?raw=true)
+![getting datas](https://github.com/alipourhabibi/work-progress-blog/blob/master/images/datas.jpg?raw=true)
+![bar chart](https://github.com/alipourhabibi/work-progress/blob/master/images/barchart.jpg?raw=true)
 
 ## attention
 This app is written using urfave and i made this for practical use and this app is not near being usable so feel free to PR and develop this app.
