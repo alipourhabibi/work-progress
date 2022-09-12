@@ -147,6 +147,10 @@ func (j *job) Get() {
 			}
 		}
 
+	} else {
+		for _, v := range jobs {
+			showJobs = append(showJobs, v)
+		}
 	}
 
 	// show datas in table
@@ -176,6 +180,7 @@ func (j *job) Get() {
 	table.SetStyle(simpletable.StyleCompactLite)
 	fmt.Println(table.String())
 }
+
 func (j *job) Draw(chartName string, port int) {
 	jobs := []job{}
 	data, err := os.ReadFile(files.WORK)
