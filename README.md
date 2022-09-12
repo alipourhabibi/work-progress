@@ -13,18 +13,22 @@ $ wp job add -n name -d description -a 12
 $ wp job get -n name -t time(regex)
 ```
 ```
-$ wp chart draw -name name -time time(regext) -c bar
+$ wp draw -name name
+```
+```
+$ wp draw -t 09-12-2022
 ```
 ## screenshots
-![getting datas](https://github.com/alipourhabibi/work-progress/blob/master/images/datas.jpg?raw=true)
-![bar chart](https://github.com/alipourhabibi/work-progress/blob/master/images/barchart.jpg?raw=true)
+![table](https://github.com/alipourhabibi/work-progress/blob/master/images/1.jpg?raw=true)
+![raw_data](https://github.com/alipourhabibi/work-progress/blob/master/images/2.jpg?raw=true)
+## Using termgraph
+```
+$ wp draw -name name | termgraph
+```
+![termgraph](https://github.com/alipourhabibi/work-progress/blob/master/images/3.jpg?raw=true)
 
 ## attention
 This app is written using urfave and i made this for practical use and this app is not near being usable so feel free to PR and develop this app.
-and for making of this app i used some other opensource modes and i was like being on the shoulder giants.
-
-## contribution
-This yet only support bar charts. feel free to PR and add other kind of charts.
 
 ## Licence 
 MIT

@@ -16,18 +16,6 @@ func JobDraw() []cli.Flag {
 			Usage:    "time of job based on regex",
 			Required: false,
 		},
-		&cli.StringSliceFlag{
-			Name:     "chart",
-			Aliases:  []string{"c"},
-			Usage:    "give the type of chart",
-			Required: true,
-		},
-		&cli.StringSliceFlag{
-			Name:     "port",
-			Aliases:  []string{"p"},
-			Usage:    "port which chart will be shown",
-			Required: false,
-		},
 	}
 	return drawFlags
 }

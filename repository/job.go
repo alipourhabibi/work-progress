@@ -8,7 +8,6 @@ import (
 	"time"
 
 	"github.com/alexeyco/simpletable"
-	"github.com/alipourhabibi/work-progress/chart"
 	"github.com/alipourhabibi/work-progress/files"
 )
 
@@ -181,7 +180,7 @@ func (j *job) Get() {
 	fmt.Println(table.String())
 }
 
-func (j *job) Draw(chartName string, port int) {
+func (j *job) Draw() {
 	jobs := []job{}
 	data, err := os.ReadFile(files.WORK)
 	if err != nil {
@@ -191,17 +190,9 @@ func (j *job) Draw(chartName string, port int) {
 
 	showJobs := []job{}
 
-	if j.Name != "" && j.Time != "" {
-		for _, v := range jobs {
-			match, err := regexp.MatchString(j.Time, v.Time)
-			if err != nil {
-				panic(err)
-			}
-			if v.Name == j.Name && match {
-				showJobs = append(showJobs, v)
-			}
-		}
-	} else if j.Name == "" && j.Time != "" {
+	chartType := ""
+
+	if j.Name == "" && j.Time != "" {
 		for _, v := range jobs {
 			match, err := regexp.MatchString(j.Time, v.Time)
 			if err != nil {
@@ -211,22 +202,25 @@ func (j *job) Draw(chartName string, port int) {
 				showJobs = append(showJobs, v)
 			}
 		}
+		chartType = "time"
 	} else if j.Name != "" && j.Time == "" {
 		for _, v := range jobs {
 			if v.Name == j.Name {
 				showJobs = append(showJobs, v)
 			}
 		}
-
+		chartType = "name"
 	}
 
-	inInterface := []map[string]interface{}{}
-	inRec, err := json.Marshal(showJobs)
-	json.Unmarshal(inRec, &inInterface)
-
-	switch chartName {
-	case "bar":
-		chart.BarChart(inInterface, port)
+	if chartType == "time" {
+		for _, v := range showJobs {
+			fmt.Println(v.Name, v.Amont)
+		}
+	} else if chartType == "name" {
+		for _, v := range showJobs {
+			fmt.Println(v.Time, v.Amont)
+		}
+	} else {
+		fmt.Println("Invalid input")
 	}
-
 }
