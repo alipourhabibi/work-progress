@@ -29,7 +29,3 @@ $ wp draw -name name | termgraph
 
 ## attention
 This app is written using urfave and i made this for practical use and this app is not near being usable so feel free to PR and develop this app.
-
-## Licence 
-MIT
-
